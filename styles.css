@@ -1,0 +1,363 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', system-ui, sans-serif;
+}
+
+:root {
+    --primary-color: #8B5CF6;
+    --secondary-color: #6D28D9;
+    --background-dark: #0F172A;
+    --background-light: #1E293B;
+    --text-primary: #F8FAFC;
+    --text-secondary: #CBD5E1;
+    --danger-color: #EF4444;
+    --success-color: #22C55E;
+    --neon-glow: 0 0 10px rgba(139, 92, 246, 0.5),
+                 0 0 20px rgba(139, 92, 246, 0.3),
+                 0 0 30px rgba(139, 92, 246, 0.1);
+}
+
+body {
+    background: var(--background-dark);
+    color: var(--text-primary);
+    min-height: 100vh;
+    background-image: 
+        radial-gradient(circle at 50% 0%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 100% 50%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #F8FAFC, #8B5CF6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: var(--neon-glow);
+}
+
+h2 {
+    font-size: 1.8rem;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+section {
+    background: var(--background-light);
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(139, 92, 246, 0.1);
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+}
+
+section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+    animation: neonScan 3s linear infinite;
+}
+
+/* Logo e Header */
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.neon-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    box-shadow: var(--neon-glow);
+    animation: neonPulse 2s infinite;
+}
+
+/* Seções */
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.neon-line {
+    flex: 1;
+    height: 2px;
+    background: var(--primary-color);
+    box-shadow: var(--neon-glow);
+}
+
+/* Cronômetro */
+.cronometro-container {
+    text-align: center;
+}
+
+.tempo-display {
+    font-size: 4.5rem;
+    font-weight: 700;
+    font-family: 'Inter', monospace;
+    margin: 2rem 0;
+    color: var(--primary-color);
+    text-shadow: var(--neon-glow);
+    letter-spacing: 4px;
+}
+
+.assunto-atual {
+    margin: 1.5rem 0;
+}
+
+.assunto-atual label {
+    margin-right: 1rem;
+    color: var(--text-secondary);
+}
+
+select {
+    background: rgba(15, 23, 42, 0.5);
+    color: var(--text-primary);
+    padding: 0.8rem 1.5rem;
+    border: 1px solid var(--primary-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+select:hover, select:focus {
+    box-shadow: var(--neon-glow);
+    background: rgba(15, 23, 42, 0.8);
+}
+
+.controles {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.btn-cronometro {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: var(--primary-color);
+    color: var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-cronometro::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+.btn-cronometro:hover::before {
+    left: 100%;
+}
+
+.btn-cronometro:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Estatísticas */
+.tempo-total {
+    text-align: center;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    text-shadow: var(--neon-glow);
+    padding: 2rem 0;
+}
+
+.tempo-total p {
+    position: relative;
+    display: inline-block;
+}
+
+.tempo-total p::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+    animation: neonPulse 2s infinite;
+}
+
+/* Gráficos */
+.graficos {
+    margin-bottom: 3rem;
+}
+
+.graficos canvas {
+    background: var(--background-dark);
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    min-height: 400px;
+    max-height: 500px;
+    width: 100%;
+}
+
+/* Histórico */
+.tabela-container {
+    background: rgba(15, 23, 42, 0.3);
+    border-radius: 12px;
+    padding: 1rem;
+}
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+th {
+    background: rgba(139, 92, 246, 0.1);
+    color: var(--primary-color);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 1.2rem 1rem;
+}
+
+td {
+    padding: 1rem;
+    border-bottom: 1px solid rgba(139, 92, 246, 0.1);
+    color: var(--text-secondary);
+}
+
+tr:hover td {
+    background: rgba(139, 92, 246, 0.05);
+    color: var(--text-primary);
+}
+
+/* Botão de Logout */
+.btn-logout {
+    background: transparent !important;
+    border: 1px solid var(--danger-color) !important;
+    color: var(--danger-color) !important;
+    transition: all 0.3s ease;
+}
+
+.btn-logout:hover {
+    background: var(--danger-color) !important;
+    color: var(--text-primary) !important;
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .tempo-display {
+        font-size: 3rem;
+    }
+
+    .controles {
+        flex-direction: column;
+    }
+
+    .btn-cronometro {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .neon-line {
+        width: 100%;
+    }
+}
+
+/* Animações */
+@keyframes neonPulse {
+    0% {
+        box-shadow: var(--neon-glow);
+    }
+    50% {
+        box-shadow: 0 0 5px rgba(139, 92, 246, 0.3);
+    }
+    100% {
+        box-shadow: var(--neon-glow);
+    }
+}
+
+@keyframes neonScan {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.welcome-message {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    text-shadow: var(--neon-glow);
+    margin-bottom: 1.5rem;
+    animation: neonPulse 2s infinite;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+#nome-usuario {
+    color: var(--primary-color);
+    font-weight: 600;
+    text-shadow: var(--neon-glow);
+} 

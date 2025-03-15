@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tracker de Estudos</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <div class="neon-circle"></div>
+                <h1>Tracker de Estudos</h1>
+            </div>
+            <p class="welcome-message">Bem-vindo, Ridelvan!</p>
+        </header>
+
+        <section class="cronometro">
+            <div class="section-header">
+                <h2>Cronômetro de Estudos</h2>
+                <div class="neon-line"></div>
+            </div>
+            <div class="cronometro-container">
+                <div class="tempo-display">
+                    <span id="horas">00</span>:<span id="minutos">00</span>:<span id="segundos">00</span>
+                </div>
+                <div class="assunto-atual">
+                    <label for="assunto-cronometro">Estudando:</label>
+                    <select id="assunto-cronometro" required>
+                        <option value="Inglês">Inglês</option>
+                        <option value="Psicanálise">Psicanálise</option>
+                        <option value="Programação">Programação</option>
+                    </select>
+                </div>
+                <div class="controles">
+                    <button id="iniciar" class="btn-cronometro">Iniciar</button>
+                    <button id="pausar" class="btn-cronometro" disabled>Pausar</button>
+                    <button id="parar" class="btn-cronometro" disabled>Finalizar</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="estatisticas">
+            <div class="section-header">
+                <h2>Total de Tempo Estudado</h2>
+                <div class="neon-line"></div>
+            </div>
+            <div class="tempo-total">
+                <p id="total-horas">0</p>
+            </div>
+        </section>
+
+        <section class="graficos">
+            <div class="section-header">
+                <h2>Evolução por Assunto</h2>
+                <div class="neon-line"></div>
+            </div>
+            <canvas id="grafico-evolucao"></canvas>
+        </section>
+
+        <section class="historico">
+            <div class="section-header">
+                <h2>Histórico de Estudos</h2>
+                <div class="neon-line"></div>
+            </div>
+            <div class="tabela-container">
+                <table id="tabela-historico">
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Assunto</th>
+                            <th>Tempo</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
